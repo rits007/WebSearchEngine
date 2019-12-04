@@ -69,4 +69,3 @@ class SuffixTrieNode {
 } 
 
 
-// This code is contributed by Sumit Ghosh

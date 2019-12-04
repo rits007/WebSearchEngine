@@ -16,7 +16,7 @@ public class SearchBackup {
 	public static void main(String[] args) throws FileNotFoundException, IOException, ClassNotFoundException {
 		
 		
-		File dir = new File("TextFiles/");
+		File dir = new File("TestFile/");
 		System.out.println(dir.isDirectory());
 	
 		ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File("indexes")));

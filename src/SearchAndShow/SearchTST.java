@@ -13,7 +13,7 @@ public class SearchTST {
 
 	public static void main(String[] args) {
 		
-		File dir = new File("F:/university/sem 1/advance algo/PROJECT/webtxtFiles");
+		File dir = new File("TestFile/");
 		File[] files = dir.listFiles();
 		ArrayList<TST<Integer>> tst =new ArrayList<TST<Integer>>();
 		

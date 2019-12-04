@@ -22,7 +22,7 @@ public class SearchB {
 	
 	public static void main(String[] args) throws FileNotFoundException, IOException, ClassNotFoundException {
 		HashMap <String , HashMap<String,Integer>> god = new HashMap<String, HashMap<String,Integer>>();
-		File dir = new File("TextFiles/");
+		File dir = new File("TestFile/");
 		
 			god = getTrident(dir);
 			

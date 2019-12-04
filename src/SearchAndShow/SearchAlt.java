@@ -19,7 +19,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class SearchAlt {
-	
+
 	static ArrayList<String> key = new ArrayList<String>();
 	static Hashtable<String, Integer> numbers = new Hashtable<String, Integer>();
 	static Scanner sc = new Scanner(System.in);

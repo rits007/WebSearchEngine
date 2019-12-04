@@ -31,7 +31,7 @@ public class Search {
 	public static void main(String[] args) throws FileNotFoundException, IOException, ClassNotFoundException {
 
 
-		File dir = new File("TextFiles/");
+		File dir = new File("TestFile/");
 		//System.out.println(dir.isDirectory());
 
 		ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File("indexes")));
@@ -59,41 +59,28 @@ public class Search {
 			}
 			case "2":{
 				do {
-					System.out.print("\nEnter string to search: ");
+					System.out.println("\nEnter string to search: ");
 					String string = br.readLine();
 					int existentcount=1;
 
 
-					String token;
-					StringTokenizer st ;
-					//System.out.println(st);
+					System.out.println(string);
 					int total;
 					for(File f : dir.listFiles()) {
-						System.out.println(f.getName());
-						st = new StringTokenizer(string, " ");
-						total =0 ;		
-						while(st.hasMoreTokens()) {
-							token = st.nextToken();
-							if(god.get(f.getName()).containsKey(token)) {
-								//System.out.println(god.get(f.getName()).get(token));
-								total = total + god.get(f.getName()).get(token);
-							}
-						}
+						BufferedReader bufferedReader = new BufferedReader(new FileReader(f));
+						total = (int) bufferedReader.lines().filter((line)-> line.indexOf(string)!=-1).count();
 						unsorted.put(f.getName(), total );
 					}
 					if (existentcount>0) {
-						Map<String, Integer> sorted = new HashMap<String, Integer>();
-						sorted = sortByValue(unsorted, DESC);
-
-
-						Set<String> keys = sorted.keySet();
 						int i=1;
 						File[] top10 = new File[10];
-						for(String s : keys) {
-							System.out.println(i + ") " + s + " " + sorted.get(s));
-							top10[i-1]=new File(s);
-							i++;
-							if(i>10) break;
+						for(String s : unsorted.keySet()) {
+							if(unsorted.get(s)>0) {
+								System.out.println(i + ") " + s + " " + unsorted.get(s));
+								top10[i-1]=new File(s);
+								i++;
+								if(i>10) break;
+							}
 						}
 						System.out.println("Enter Choice(1-10 to open pages)(n to exit)");
 						choice = br.readLine();
@@ -101,10 +88,12 @@ public class Search {
 						do {
 							try {
 								int x = Integer.parseInt(choice);
-								BufferedReader bufferedReader = new BufferedReader(new FileReader("TextFiles/"+top10[x-1]));
-								File html = new File (bufferedReader.readLine());
+							//	BufferedReader bufferedReader = new BufferedReader(new FileReader("TestFile/"+top10[x-1]));
+
+								File html = new File ("TestFile/"+top10[x-1]);
+								System.out.println("xxxEnter n to stop and numbers to open files(<=10)");
 								Desktop.getDesktop().open(html);
-								System.out.println("Enter n to stop and numbers to open files(<=10)");
+								System.out.println("xxxEnter n to stop and numbers to open files(<=10)");
 							}catch (NumberFormatException nfe){
 								if(!choice.equalsIgnoreCase("n"))
 									System.out.println("Please enter a number (1-10) n to exit");
